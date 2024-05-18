@@ -1,0 +1,299 @@
+<!--v1.01 β-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculator with Details</title>
+    <style>
+        /* Стили для страницы */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            color: #4a90e2;
+            margin-top: 20px;
+        }
+
+        form {
+            margin: 20px 0;
+        }
+
+        input[type="text"],
+        select,
+        input[type="submit"] {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        /* Стили для операции */
+        h3 {
+            margin: 20px 0;
+            color: #2c3e50;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+
+        .red {
+            color: #e74c3c;
+        }
+
+        .cyan {
+            color: #3498db;
+        }
+
+        .yellow {
+            color: #f1c40f;
+        }
+
+        /* Оформление контейнера для шагов */
+        .steps-container {
+            margin: 20px auto;
+            width: 60%;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .step {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Цвета для каждого шага */
+        .step-1 {
+            background-color: #e0f7fa; /* Светло-голубой */
+        }
+
+        .step-2 {
+            background-color: #fce4ec; /* Светло-розовый */
+        }
+
+        .step-3 {
+            background-color: #fff3e0; /* Светло-оранжевый */
+        }
+
+        .step-4 {
+            background-color: #e8f5e9; /* Светло-зеленый */
+        }
+
+        .step-5 {
+            background-color: #f1f8e9; /* Светло-желтый */
+        }
+
+        .step-6 {
+            background-color: #f9f7e9; /* Светло-желтый */
+        }
+
+        .step-7 {
+            background-color: #f5f5e1; /* Светло-желтый */
+        }
+
+        .step-8 {
+            background-color: #e0f7fa; /* Светло-голубой */
+        }
+
+        .step-9 {
+            background-color: #fce4ec; /* Светло-розовый */
+        }
+
+        .step-10 {
+            background-color: #fff3e0; /* Светло-оранжевый */
+        }
+
+        .step-11 {
+            background-color: #e8f5e9; /* Светло-зеленый */
+        }
+
+        .step-12 {
+            background-color: #f1f8e9; /* Светло-желтый */
+        }
+
+        .step-13 {
+            background-color: #f9f7e9; /* Светло-желтый */
+        }
+
+        .step-14 {
+            background-color: #f5f5e1; /* Светло-желтый */
+        }
+
+        .step-15 {
+            background-color: #e0f7fa; /* Светло-голубой */
+        }
+
+        .step-16 {
+            background-color: #fce4ec; /* Светло-розовый */
+        }
+
+        .step-17 {
+            background-color: #fff3e0; /* Светло-оранжевый */
+        }
+
+        .step-18 {
+            background-color: #e8f5e9; /* Светло-зеленый */
+        }
+
+        .step-19 {
+            background-color: #f1f8e9; /* Светло-желтый */
+        }
+
+        .step-20 {
+            background-color: #f9f7e9; /* Светло-желтый */
+        }
+
+        .step-21 {
+            background-color: #f5f5e1; /* Светло-желтый */
+        }
+
+        .step-22 {
+            background-color: #e0f7fa; /* Светло-голубой */
+        }
+
+        .step-23 {
+            background-color: #fce4ec; /* Светло-розовый */
+        }
+
+        .step-24 {
+            background-color: #fff3e0; /* Светло-оранжевый */
+        }
+
+        .step-25 {
+            background-color: #e8f5e9; /* Светло-зеленый */
+        }
+
+        .step-26 {
+            background-color: #f1f8e9; /* Светло-желтый */
+        }
+
+        .step-27 {
+            background-color: #f9f7e9; /* Светло-желтый */
+        }
+
+        .step-28 {
+            background-color: #f5f5e1; /* Светло-желтый */
+        }
+
+        .step-header {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Стили для раздела info */
+        #info {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+        #smiley {
+            font-size: 50px; /* Размер смайлика */
+        }
+
+        #info-container {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Calculator with Details</h2>
+    <img src="static/images/Цвета.png" style="position: fixed; top: 0; right: 0; width: 250px; height: auto; padding: 10px; z-index: 9999;">
+    <!-- Форма ввода -->
+    <form action="/calculate" method="post">
+        <input type="text" name="num1" placeholder="Введите число 1" required>
+        <select name="format">
+            <option value="16-bit">16-bit</option>
+            <option value="32-bit">32-bit</option>
+            <option value="64-bit">64-bit</option>
+            <option value="128-bit">128-bit</option>
+        </select>
+        <select name="operation">
+            <option value="add">+</option>
+            <option value="subtract">-</option>
+            <option value="multiply">*</option>
+            <option value="divide">/</option>
+        </select>
+        <input type="text" name="num2" placeholder="Введите число 2" required>
+        <input type="submit" value="Вычислить">
+    </form>
+
+    {% if operation %}
+    <h3>Операция: {{ operation }}</h3>
+    <h3>Результат в IEEE754: {{sign_result}}{{exponent_result}}{{fraction_result}}</h3>
+    <h3>
+        Число 1 (двоичное): <span class="red">{{ sign_num1 }}</span> <span class="cyan">{{ exponent_num1 }}</span> <span class="yellow">{{ fraction_num1 }}</span>
+    </h3>
+    <p>Знак: {{ sign_num1 }}</p>
+    <p>Экспонента: {{ exponent_num1 }}</p>
+    <p>Мантисса: {{ fraction_num1 }}</p>
+    <h3>
+        Число 2 (двоичное): <span class="red">{{ sign_num2 }}</span> <span class="cyan">{{ exponent_num2 }}</span> <span class="yellow">{{ fraction_num2 }}</span>
+    </h3>
+    <p>Знак: {{ sign_num2 }}</p>
+    <p>Экспонента: {{ exponent_num2 }}</p>
+    <p>Мантисса: {{ fraction_num2 }}</p>
+    <h3>
+        Результат (двоичное): <span class="red">{{ sign_result }}</span> <span class="cyan">{{ exponent_result }}</span> <span class="yellow">{{ fraction_result }}</span>
+    </h3>
+    <p>Знак: {{ sign_result }}</p>
+    <p>Экспонента: {{ exponent_result }}</p>
+    <p>Мантисса: {{ fraction_result }}</p>
+    {% endif %}
+
+    {% if steps %}
+    <div class="steps-container">
+        {% for step in steps %}
+            <div class="step step-{{ loop.index }}">
+                <p class="step-header">Шаг {{ loop.index }}:</p>
+                <p>{{ step }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Добавление раздела "info" -->
+    <div id="info">
+        info
+    </div>
+    <div id="info-container">
+        <h3>Информация о калькуляторе:</h3>
+        <p>Этот калькулятор позволяет выполнять операции сложения, вычитания, умножения и деления с числами с плавающей запятой.</p>
+        <h3>Форматы представления чисел:</h3>
+        <p>Поддерживаются форматы 16-bit, 32-bit, 64-bit и 128-bit, соответствующие различным стандартам IEEE 754.</p>
+        <h3>Операции с плавающей запятой:</h3>
+        <p>Калькулятор выполняет операции с плавающей запятой, включая сложение, вычитание, умножение и деление.</p>
+        <p>Для выполнения операций учитываются знаки чисел и производится нормализация мантисс и экспонент.</p>
+        <h3>Использование калькулятора:</h3>
+        <p>Вводите числа, формат представления, тип операции и нажимайте "Вычислить" для получения результата.</p>
+        <p>Калькулятор также отображает шаги решения операции для более глубокого понимания процесса.</p>
+    </div>
+    <div id="smiley">&#x1f914;</div> <!-- Добавляем смайлик -->
+
+    <script>
+        // JavaScript для управления разделом "info"
+        document.getElementById('info').addEventListener('click', function () {
+            // Переключение видимости раздела "info-container"
+            var infoContainer = document.getElementById('info-container');
+            infoContainer.style.display = infoContainer.style.display === 'none' ? 'block' : 'none';
+        });
+    </script>
+</body>
+
+</html>
